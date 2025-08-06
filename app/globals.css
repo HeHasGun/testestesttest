@@ -46,28 +46,16 @@ body {
   position: relative;
 }
 
-.dice {
-  width: 120px;
-  height: 120px;
-  background: white;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  font-weight: bold;
-  color: #333;
+.dice-canvas {
   margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  display: block;
 }
 
-.dice:hover {
+.dice-canvas:hover {
   transform: scale(1.05);
 }
 
-.dice.rolling {
+.dice-canvas.rolling {
   animation: roll 1s ease-in-out;
 }
 
@@ -145,6 +133,161 @@ body {
   margin-top: 0.5rem;
   font-weight: 400;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 时间水印样式 */
+.watermark-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.watermark {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Courier New', monospace;
+  user-select: none;
+  backdrop-filter: blur(1px);
+}
+
+.watermark.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.watermark.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.watermark.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.watermark.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.watermark-text {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.watermark-sub {
+  font-size: 9px;
+  color: rgba(0, 0, 0, 0.3);
+  margin-top: 2px;
+  text-align: center;
+}
+
+/* 密密麻麻的水印 */
+.dense-watermarks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 998;
+  overflow: hidden;
+}
+
+.dense-watermark {
+  position: absolute;
+  transform-origin: center;
+  user-select: none;
+  opacity: 0.08;
+}
+
+.dense-watermark-text {
+  font-size: 12px;
+  color: #000;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+}
+
+.dense-watermark-sub {
+  font-size: 8px;
+  color: #000;
+  text-align: center;
+  margin-top: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+/* 斜向水印层 */
+.diagonal-watermarks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 997;
+  overflow: hidden;
+}
+
+.diagonal-watermark {
+  position: absolute;
+  transform-origin: center;
+  user-select: none;
+  opacity: 0.05;
+}
+
+.diagonal-watermark-text {
+  font-size: 10px;
+  color: #666;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+}
+
+/* 微小密集水印 */
+.micro-watermarks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 996;
+  overflow: hidden;
+}
+
+.micro-watermark {
+  position: absolute;
+  transform-origin: center;
+  user-select: none;
+  opacity: 0.04;
+  font-size: 8px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+/* 防止水印被隐藏 */
+.watermark-container,
+.dense-watermarks,
+.diagonal-watermarks,
+.micro-watermarks {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .random-indicator {

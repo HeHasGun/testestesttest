@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import DiceCanvas from './components/DiceCanvas'
 
 export default function Home() {
   const [diceValue, setDiceValue] = useState<number>(1)
@@ -72,22 +73,18 @@ export default function Home() {
     setRollTime('')
   }
 
-  const getDiceDisplay = (value: number): string => {
-    const diceUnicode = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
-    return diceUnicode[value - 1]
-  }
+  // 移除getDiceDisplay函数，改用Canvas组件
 
   return (
     <div className="container">
       <h1 className="title">🎲 摇骰子</h1>
       
       <div className="dice-container">
-        <div 
-          className={`dice ${isRolling ? 'rolling' : ''}`}
+        <DiceCanvas 
+          value={diceValue}
+          isRolling={isRolling}
           onClick={rollDice}
-        >
-          {getDiceDisplay(diceValue)}
-        </div>
+        />
       </div>
 
       <button 
